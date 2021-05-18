@@ -1,58 +1,42 @@
-// const arr = [1, 0, 3, 5, 10];
+const array = [0, 1, 3, 5, 6, 7, 12, 14, 15, 16];
+let count = 0;
 
-// function searchElement(arr, el) {
-//   for (let i = 0; i < arr.length; i++) {
-//     if (arr[i] === el) {
-//       return i;
+// function linearSearch(arr, item) {
+//   for (let index = 0; index < arr.length; index++) {
+//     count += 1;
+//     if (arr[index] === item) {
+//       return index;
 //     }
 //   }
-//   return -1;
+
+//   return null;
 // }
 
-const arr = [1, 4, 5, 10, 34, 9, 0, 24, 4, 10, 4];
-arr.sort((a, b) => a - b);
-console.log(arr);
+// function binarySearch(arr, item) {
+//   let start = 0;
+//   let end = arr.length;
+//   let middle;
+//   let found = false;
+//   let position = -1;
 
-console.log(countFreg(arr, 1));
+//   while (found === false && start <= end) {
+//     count += 1;
+//     middle = Math.floor((start + end) / 2);
 
-function binarySearch(arr, el) {
-  let left = -1;
-  let right = arr.length;
+//     if (arr[middle] === item) {
+//       found = true;
+//       position = middle;
+//       return position;
+//     }
 
-  while (right - left > 1) {
-    const mid = Math.floor((right - left) / 2); // middle of array
+//     if (item < arr[middle]) {
+//       end = middle - 1;
+//     } else {
+//       start = middle + 1;
+//     }
+//   }
 
-    if (arr[mid] === el) {
-      // if we got it, return index
-      return mid;
-    }
+//   return position;
+// }
 
-    if (arr[mid] > el) {
-      right = mid;
-    } else {
-      left = mid;
-    }
-
-    return -1;
-  }
-}
-
-function countFreg(arr, el) {
-  const posEL = binarySearch(arr, el);
-
-  if (posEL === -1) {
-    return 0;
-  }
-
-  let i = posEL;
-  while (arr[i] === el) {
-    i--;
-  }
-
-  let j = posEL;
-  while (arr[j] === el) {
-    j++;
-  }
-
-  return j - i - 1;
-}
+console.log('count:', count);

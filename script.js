@@ -61,22 +61,49 @@ let count = 0;
 //   return arr;
 // }
 
-function bubbleSort(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr.length; j++) {
-      if (arr[j + 1] < arr[j]) {
-        let swap = arr[j];
-        arr[j] = arr[j + 1];
-        arr[j + 1] = swap;
-      }
-      count += 1;
-    }
+// function bubbleSort(arr) {
+//   for (let i = 0; i < arr.length; i++) {
+//     for (let j = 0; j < arr.length; j++) {
+//       if (arr[j + 1] < arr[j]) {
+//         let swap = arr[j];
+//         arr[j] = arr[j + 1];
+//         arr[j + 1] = swap;
+//       }
+//       count += 1;
+//     }
+//   }
+
+//   return arr;
+// }
+
+function quickSort(arr) {
+  if (arr.length <= 1) {
+    return arr;
   }
 
-  return arr;
+  let pivotIndex = Math.floor(arr.length / 2);
+  let pivot = arr[pivotIndex];
+  let less = [];
+  let greater = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (i === pivotIndex) {
+      continue;
+    }
+
+    if (arr[i] < pivot) {
+      less.push(arr[i]);
+    } else {
+      greater.push(arr[i]);
+    }
+
+    count += 1;
+  }
+
+  return [...quickSort(less), pivot, ...quickSort(greater)];
 }
 
-console.log(bubbleSort(array));
+console.log(quickSort(array));
 console.log(array.length);
 
 console.log('count:', count);

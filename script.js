@@ -1,58 +1,82 @@
-// const arr = [1, 0, 3, 5, 10];
+const array = [
+  0, 3, 2, 5, 6, 8, 1, 9, 4, 2, 1, 2, 9, 6, 4, 1, 7, -1, -5, 23, 6, 2, 35, 6, 3,
+  32,
+];
+let count = 0;
 
-// function searchElement(arr, el) {
-//   for (let i = 0; i < arr.length; i++) {
-//     if (arr[i] === el) {
-//       return i;
+// function linearSearch(arr, item) {
+//   for (let index = 0; index < arr.length; index++) {
+//     count += 1;
+//     if (arr[index] === item) {
+//       return index;
 //     }
 //   }
-//   return -1;
+
+//   return null;
 // }
 
-const arr = [1, 4, 5, 10, 34, 9, 0, 24, 4, 10, 4];
-arr.sort((a, b) => a - b);
-console.log(arr);
+// function binarySearch(arr, item) {
+//   let start = 0;
+//   let end = arr.length;
+//   let middle;
+//   let found = false;
+//   let position = -1;
 
-console.log(countFreg(arr, 1));
+//   while (found === false && start <= end) {
+//     count += 1;
+//     middle = Math.floor((start + end) / 2);
 
-function binarySearch(arr, el) {
-  let left = -1;
-  let right = arr.length;
+//     if (arr[middle] === item) {
+//       found = true;
+//       position = middle;
+//       return position;
+//     }
 
-  while (right - left > 1) {
-    const mid = Math.floor((right - left) / 2); // middle of array
+//     if (item < arr[middle]) {
+//       end = middle - 1;
+//     } else {
+//       start = middle + 1;
+//     }
+//   }
 
-    if (arr[mid] === el) {
-      // if we got it, return index
-      return mid;
+//   return position;
+// }
+
+// function selectionSort(arr) {
+//   for (let i = 0; i < arr.length; i++) {
+//     let indexMin = i;
+//     for (let j = i + 1; j < arr.length; j++) {
+//       if (arr[j] < arr[indexMin]) {
+//         indexMin = j;
+//       }
+
+//       count += 1;
+//     }
+
+//     let swap = arr[i];
+//     arr[i] = arr[indexMin];
+//     arr[indexMin] = swap;
+//   }
+
+//   return arr;
+// }
+
+function bubbleSort(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      if (arr[j + 1] < arr[j]) {
+        let swap = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = swap;
+      }
+      count += 1;
     }
-
-    if (arr[mid] > el) {
-      right = mid;
-    } else {
-      left = mid;
-    }
-
-    return -1;
   }
+
+  return arr;
 }
 
-function countFreg(arr, el) {
-  const posEL = binarySearch(arr, el);
+console.log(bubbleSort(array));
+console.log(array.length);
 
-  if (posEL === -1) {
-    return 0;
-  }
-
-  let i = posEL;
-  while (arr[i] === el) {
-    i--;
-  }
-
-  let j = posEL;
-  while (arr[j] === el) {
-    j++;
-  }
-
-  return j - i - 1;
-}
+console.log('count:', count);

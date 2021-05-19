@@ -42,25 +42,41 @@ let count = 0;
 //   return position;
 // }
 
-function selectionSort(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    let indexMin = i;
-    for (let j = i + 1; j < arr.length; j++) {
-      if (arr[j] < arr[indexMin]) {
-        indexMin = j;
-      }
+// function selectionSort(arr) {
+//   for (let i = 0; i < arr.length; i++) {
+//     let indexMin = i;
+//     for (let j = i + 1; j < arr.length; j++) {
+//       if (arr[j] < arr[indexMin]) {
+//         indexMin = j;
+//       }
 
+//       count += 1;
+//     }
+
+//     let swap = arr[i];
+//     arr[i] = arr[indexMin];
+//     arr[indexMin] = swap;
+//   }
+
+//   return arr;
+// }
+
+function bubbleSort(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      if (arr[j + 1] < arr[j]) {
+        let swap = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = swap;
+      }
       count += 1;
     }
-
-    let swap = arr[i];
-    arr[i] = arr[indexMin];
-    arr[indexMin] = swap;
   }
 
   return arr;
 }
 
-console.log(selectionSort(array));
+console.log(bubbleSort(array));
+console.log(array.length);
 
 console.log('count:', count);

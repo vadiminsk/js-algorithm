@@ -4,6 +4,14 @@ const array = [
 ];
 let count = 0;
 
+const graph = {};
+graph.a = ['b', 'c'];
+graph.b = ['f'];
+graph.c = ['d', 'e'];
+graph.d = ['f'];
+graph.e = ['f'];
+graph.f = ['g'];
+
 // function linearSearch(arr, item) {
 //   for (let index = 0; index < arr.length; index++) {
 //     count += 1;
@@ -76,34 +84,53 @@ let count = 0;
 //   return arr;
 // }
 
-function quickSort(arr) {
-  if (arr.length <= 1) {
-    return arr;
-  }
+// function quickSort(arr) {
+//   if (arr.length <= 1) {
+//     return arr;
+//   }
 
-  let pivotIndex = Math.floor(arr.length / 2);
-  let pivot = arr[pivotIndex];
-  let less = [];
-  let greater = [];
+//   let pivotIndex = Math.floor(arr.length / 2);
+//   let pivot = arr[pivotIndex];
+//   let less = [];
+//   let greater = [];
 
-  for (let i = 0; i < arr.length; i++) {
-    if (i === pivotIndex) {
-      continue;
+//   for (let i = 0; i < arr.length; i++) {
+//     if (i === pivotIndex) {
+//       continue;
+//     }
+
+//     if (arr[i] < pivot) {
+//       less.push(arr[i]);
+//     } else {
+//       greater.push(arr[i]);
+//     }
+
+//     count += 1;
+//   }
+
+//   return [...quickSort(less), pivot, ...quickSort(greater)];
+// }
+
+function breadthSearch(graph, start, end) {
+  let queue = [];
+  queue.push(start);
+
+  while (queue.length > 0) {
+    const current = queue.shift();
+
+    if (!graph[current]) {
+      graph[current] = [];
     }
 
-    if (arr[i] < pivot) {
-      less.push(arr[i]);
+    if (graph[current].includes(end)) {
+      return true;
     } else {
-      greater.push(arr[i]);
+      queue = [...queue, ...graph[current]];
     }
-
-    count += 1;
   }
-
-  return [...quickSort(less), pivot, ...quickSort(greater)];
 }
 
-console.log(quickSort(array));
+console.log(breadthSearch(graph, 'a', 'n'));
 console.log(array.length);
 
 console.log('count:', count);
